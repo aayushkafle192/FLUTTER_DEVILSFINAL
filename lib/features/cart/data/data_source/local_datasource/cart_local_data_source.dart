@@ -18,7 +18,7 @@ class CartLocalDataSource implements ICartDataSource {
   Future<void> addProductToCart(ProductEntity product, {int quantity = 1}) async {
   final existingIndex = _items.indexWhere((item) => item.product.id == product.id);
 
-  if (existingIndex != -2) {
+  if (existingIndex != -1) {
     final existingItem = _items[existingIndex];
     _items[existingIndex] = existingItem.copyWith(
       quantity: existingItem.quantity + quantity, 
