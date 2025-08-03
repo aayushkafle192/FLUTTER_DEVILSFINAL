@@ -133,7 +133,7 @@ void _initAuthModule() {
   // --- THIS IS THE UPDATED PART ---
   serviceLocator.registerFactory(
     () => LoginViewModel(
-      userLoginUsecase: serviceLocator(),
+      // userLoginUsecase: serviceLocator(),
       loginWithGoogleUseCase: serviceLocator(),
       registerFCMTokenUseCase: serviceLocator(), // Add this line
       authSecureStorage: serviceLocator(),
