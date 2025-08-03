@@ -93,7 +93,7 @@ class _CartViewState extends State<CartView> {
           //       foregroundColor: Colors.black,
           //       padding: const EdgeInsets.symmetric(vertical: 16),
           //     ),
-          //     child: const Text('Checkout', tyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+          //     child: conText('Checkout', tyle: xtStyle(fontWeight: FontWeight.bold, fontSize: 16)),
           //   ),
           // ),
         ],
