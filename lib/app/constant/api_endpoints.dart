@@ -31,7 +31,7 @@ class ApiEndpoints {
   static const String allProducts = "api/admin/product/";
   static const String featuredProducts = "api/admin/product/featured";
   static const String allCategories = "api/admin/category/";
-  static const String allRibbons = "api/admin/ribbon/";
+  static const String allRibbons = "api/admin/";
   static String getProductById(String productId) => "$baseUrl$allProducts$productId";
 
   // ====================== Notifications ======================
