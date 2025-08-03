@@ -174,10 +174,7 @@ class _ProductDetailViewState extends State<_ProductDetailView>
       ),
       bottomNavigationBar:
           BlocBuilder<ProductDetailViewModel, ProductDetailState>(
-        builder: (context, state) {
-          return state.status == ProductDetailStatus.success
-              ? _buildBottomActionBar(context, state)
-              : const SizedBox.shrink();
+       
         },
       ),
     );
