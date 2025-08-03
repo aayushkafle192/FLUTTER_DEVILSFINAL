@@ -7,7 +7,7 @@ abstract class ICartDataSource {
   Future<CartEntity> getCart();
   Future<void> addProductToCart(ProductEntity product, {int quantity = 1});
   Future<void> removeProductFromCart(String cartItemId);
-  Future<void> (String cartItemId, int newQuantity);
+  Future<void> updateItemQuantity(String cartItemId, int newQuantity);
 }
 
 class CartLocalDataSource implements ICartDataSource {
