@@ -7,7 +7,7 @@ class BottomNavigationState extends Equatable {
 
   BottomNavigationState copyWith({int? index}) {
     return BottomNavigationState(
-      index: index ?? this.index,
+      index: index  this.index,
     );
   }
 
