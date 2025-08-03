@@ -91,7 +91,7 @@ class _CartViewState extends State<CartView> {
           //     style: ElevatedButton.styleFrom(
           //       backgroundColor: const Color.fromARGB(255, 158, 156, 151),
           //       foregroundColor: Colors.black,
-          //       padding: const EdgeInsets.symmetric(vertical: 16),
+          //       padding: const EdgeInsetymmetric(vertical: 16),
           //     ),
           //     child: conText('Checkout', tyle: xtStyle(fontWeight: FontWeight.bold, fontSize: 16)),
           //   ),
