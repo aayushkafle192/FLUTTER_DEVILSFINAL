@@ -60,7 +60,13 @@ class _ProfileViewState extends State<ProfileView> {
     );
   }
 
- 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppTheme.backgroundColor,
+      appBar: AppBar(
+        title: const Text('My Profile'),
+        actions: const [],
       ),
       body: BlocConsumer<ProfileViewModel, ProfileState>(
         listener: (context, state) {
