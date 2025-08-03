@@ -1,11 +1,12 @@
-import 'package:softconnect/features/auth/domain/entity/user_entity.dart';
+import 'package:rolo/features/auth/domain/entity/user_entity.dart';
 
-abstract interface class IUserDataSource {
-  Future<void> registerUser(UserEntity user);
+abstract interface class IUserDataSource{
+   Future<void> registerUser(UserEntity user);
 
-  Future<String> loginUser(String username, String password);
+  Future<String> loginUser(String email,String password);
 
-  Future<String> uploadProfilePicture(String filePath);
-
-  Future<UserEntity> getCurrentUser();
+  Future<void> registerFCMToken(String token);
+  Future<String> loginWithGoogle(String idToken);
+  Future<void> sendPasswordResetLink(String email);
+  Future<void> resetPassword(String token, String password);
 }

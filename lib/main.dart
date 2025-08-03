@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:softconnect/app/app.dart';
-import 'package:softconnect/app/service_locator/service_locator.dart';
-import 'package:softconnect/core/network/hive_service.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:rolo/app/app.dart';
+import 'package:rolo/app/service_locator/service_locator.dart';
+import 'package:rolo/core/network/hive_service.dart';
+import 'package:rolo/services/deep_link_service.dart';
+import 'package:rolo/services/firebase_notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await HiveService().init(); // Required
-
-  await setupServiceLocator();
+  await initDependencies();
+  await HiveService().init();
+  await Firebase.initializeApp();
+  await FirebaseNotificationService(navigatorKey: App.navigatorKey).initNotifications();
+  final deepLinkService = DeepLinkService(navigatorKey: App.navigatorKey);
+  await deepLinkService.init();
   runApp(const App());
-
-  
 }

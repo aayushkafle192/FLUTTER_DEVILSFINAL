@@ -1,54 +1,53 @@
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
-import 'package:softconnect/core/error/failure.dart';
-import 'package:softconnect/features/auth/data/data_source/user_data_source.dart';
-import 'package:softconnect/features/auth/domain/entity/user_entity.dart';
-import 'package:softconnect/features/auth/domain/repository/user_repository.dart';
+import 'package:rolo/core/error/failure.dart';
+import 'package:rolo/features/auth/data/data_source/local_datasource/user_local_data_source.dart';
+import 'package:rolo/features/auth/domain/entity/user_entity.dart';
+import 'package:rolo/features/auth/domain/repository/user_repository.dart';
 
 class UserLocalRepository implements IUserRepository {
-  final IUserDataSource _dataSource;
+  final UserLocalDataSource _userLocalDataSource;
 
-  UserLocalRepository({required IUserDataSource dataSource})
-      : _dataSource = dataSource;
+  UserLocalRepository({
+    required UserLocalDataSource userLocalDataSource,
+  }) : _userLocalDataSource = userLocalDataSource;
 
   @override
-  Future<Either<Failure, UserEntity>> getCurrentUser() async {
+  Future<Either<Failure, String>> loginUser(String email, String password) async {
     try {
-      final user = await _dataSource.getCurrentUser();
-      return Right(user);
+      final result = await _userLocalDataSource.loginUser(email, password);
+      return Right(result);
     } catch (e) {
-      return Left(LocalDatabaseFailure(message: e.toString()));
+      return Left(LocalDatabaseFailure(message: "Failed to login: $e"));
     }
   }
 
   @override
-  Future<Either<Failure, String>> loginUser(String username, String password) async {
+  Future<Either<Failure, void>> registerUser(UserEntity user) async {
     try {
-      final message = await _dataSource.loginUser(username, password);
-      return Right(message);
+      await _userLocalDataSource.registerUser(user);
+      return const Right(unit);
     } catch (e) {
-      return Left(LocalDatabaseFailure(message: e.toString()));
-    };
+      return Left(LocalDatabaseFailure(message: "Failed to register: $e"));
     }
-    
-      @override
-      Future<Either<Failure, void>> registerUser(UserEntity user) async{
-    try {
-      await _dataSource.registerUser(user);
-      return const Right(null);
-    } catch (e) {
-      return Left(LocalDatabaseFailure(message: e.toString()));
-    }
-      }
-    
-      @override
-      Future<Either<Failure, String>> uploadProfilePicture(File file) {
-    // TODO: implement uploadProfilePicture
-    throw UnimplementedError();
-      }
-    
-    
   }
 
+  @override
+  Future<Either<Failure, void>> registerFCMToken(String token) async {
+    return const Right(unit);
+  }
 
+  @override
+  Future<Either<Failure, String>> loginWithGoogle(String idToken) async {
+    return Left(LocalDatabaseFailure(message: 'Google login is not available in offline mode.'));
+  }
+
+  @override
+  Future<Either<Failure, void>> sendPasswordResetLink(String email) async {
+    return Left(LocalDatabaseFailure(message: 'Forgot Password is not available in offline mode.'));
+  }
+
+  @override
+  Future<Either<Failure, void>> resetPassword(String token, String password) async {
+    return Left(LocalDatabaseFailure(message: 'Password Reset is not available in offline mode.'));
+  }
+}

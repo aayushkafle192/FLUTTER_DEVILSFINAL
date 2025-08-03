@@ -1,34 +1,52 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:softconnect/app/use_case/use_case.dart';
-import 'package:softconnect/core/error/failure.dart';
-// import 'package:softconnect/core/usecase/usecase.dart';
-import 'package:softconnect/features/auth/domain/repository/user_repository.dart';
+import 'package:rolo/app/shared_pref/token_shared_pref.dart';
+import 'package:rolo/app/use_case/usecase.dart';
+import 'package:rolo/core/error/failure.dart';
+import 'package:rolo/features/auth/domain/repository/user_repository.dart';
 
-class UserLoginParams extends Equatable {
-  final String username;
+class LoginParams extends Equatable {
+  final String email;
   final String password;
 
-  const UserLoginParams({required this.username, required this.password});
+  const LoginParams({required this.email, required this.password});
 
-  // Initial Constructor
-  const UserLoginParams.initial() : username = '', password = '';
-
+  const LoginParams.initial()
+      : email = '',
+        password = '';
   @override
-  List<Object?> get props => [username, password];
+  List<Object?> get props => [email, password];
 }
 
-class UserLoginUsecase implements UsecaseWithParams<String, UserLoginParams> {
+class UserLoginUsecase implements UsecaseWithParams<String, LoginParams> {
   final IUserRepository _userRepository;
+  final TokenSharedPrefs _tokenSharedPrefs;
 
-  UserLoginUsecase({required IUserRepository userRepository})
-      : _userRepository = userRepository;
+  UserLoginUsecase({
+    required IUserRepository userRepository,
+    required TokenSharedPrefs tokenSharedPrefs,
+  })  : _userRepository = userRepository,
+        _tokenSharedPrefs = tokenSharedPrefs;
 
   @override
-  Future<Either<Failure, String>> call(UserLoginParams params) async {
-    return await _userRepository.loginUser(
-      params.username,
+  Future<Either<Failure, String>> call(LoginParams params) async {
+    final result = await _userRepository.loginUser(
+      params.email,
       params.password,
     );
+    return result.fold(
+      (failure) => Left(failure),
+      (token) async {
+        final saveResult = await _tokenSharedPrefs.saveToken(token);
+        return saveResult.fold(
+          (failure) => Left(failure),
+          (_) => Right(token),
+        );
+      },
+    );
+  }
+
+  Future<Either<Failure, Unit>> saveTokenAfterExternalLogin(String token) async {
+    return await _tokenSharedPrefs.saveToken(token);
   }
 }
