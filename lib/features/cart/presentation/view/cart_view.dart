@@ -108,7 +108,7 @@ class _CartViewState extends State<CartView> {
         children: [
           Icon(Icons.shopping_cart_outlined, size: 80, color: Colors.grey[600]),
           const SizedBox(height: 16),
-          const Text('Your cart is emp', style: AppTheme.subheadingStyle),
+          const Text('Yr cart is emp', style: AppTheme.subheadingStyle),
           const SizedBox(height: 8),
           const Text('Add items to get started', style: AppTheme.captionStyle),
           const SizedBox(height: 24),
