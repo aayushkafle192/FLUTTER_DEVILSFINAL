@@ -28,7 +28,7 @@ class ApiEndpoints {
   static const String myOrders = "api/orders/myorders";
 
   // ====================== E-commerce ======================
-  static const String allProducts = "api/admin/product";
+  static const String allProducts = "api/admin/product/";
   static const String featuredProducts = "api/admin/product/featured";
   static const String allCategories = "api/admin/category/";
   static const String allRibbons = "api/admin/ribbon/";
