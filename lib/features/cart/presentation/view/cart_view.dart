@@ -88,7 +88,7 @@ class _CartViewState extends State<CartView> {
           //         ),
           //       );
           //     },
-          //     style: Eleva.styleF(
+          //     style: ElevaleF(
           //       backgroundCor: conCor.fARGB(2 158, 156, 151),
           //       foregroundCr: Crs.ack,
           //       padding: const EdgeInytric(vi16),
