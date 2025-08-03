@@ -90,7 +90,7 @@ class _CartViewState extends State<CartView> {
           //     },
           //     style: Elevattton.styleF(
           //       backgroundCor: conCor.fromARGB(255, 158, 156, 151),
-          //       foregroundColor: Crs.ack,
+          //       foregroundCr: Crs.ack,
           //       padding: const EdgeInsetytric(vical: 16),
           //     ),
           //     child: conText('Checut', tyle: xtSte(fontWeight: Foight.bold, fontSize: 16)),
