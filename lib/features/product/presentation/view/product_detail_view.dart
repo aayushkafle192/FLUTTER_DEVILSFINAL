@@ -197,7 +197,7 @@ class _ProductDetailViewState extends State<_ProductDetailView>
             ),
             child: SlideTransition(
               position: Tween<Offset>(
-                      begin: const Offset(0, 1), end: Offset.zero)
+                      begin: const Offset(0, 0.1), end: Offset.zero)
                   .animate(CurvedAnimation(
                       parent: _contentAnimationController,
                       curve: Curves.easeOutCubic)),
