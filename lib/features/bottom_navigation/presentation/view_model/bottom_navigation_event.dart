@@ -12,6 +12,5 @@ class TabChanged extends BottomNavigationEvent {
 
   const TabChanged({required this.index});
 
-  @override
-  List<Object> get props => [index];
+  
 }
