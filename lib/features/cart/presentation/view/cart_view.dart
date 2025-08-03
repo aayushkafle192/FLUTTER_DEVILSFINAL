@@ -89,7 +89,7 @@ class _CartViewState extends State<CartView> {
           //       );
           //     },
           //     style: Elevattton.styleF(
-          //       backgroundCor: conCor.fromARGB(255, 158, 156, 151),
+          //       backgroundCor: conCor.fromARGB(2 158, 156, 151),
           //       foregroundCr: Crs.ack,
           //       padding: const EdgeInsetytric(vical: 16),
           //     ),
