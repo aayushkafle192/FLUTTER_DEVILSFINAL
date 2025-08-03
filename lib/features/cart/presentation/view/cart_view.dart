@@ -80,7 +80,7 @@ class _CartViewState extends State<CartView> {
           ),
           const SizedBox(width: 16),
           // Expanded(
-          //   child: ElevatedButton(
+          //   child: EletedButton(
           //     onPressed: () {
           //       Navigator.of(context)sh(
           //         MateriageRo(
