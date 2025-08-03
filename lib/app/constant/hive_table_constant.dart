@@ -1,7 +1,7 @@
 class HiveTableConstant {
   HiveTableConstant._();
 
-  static const int userTableId = 3;
+  static const int userTableId = 0;
   static const String userBox = 'userBox';
 
   static const int cartItemTableId = 2;
